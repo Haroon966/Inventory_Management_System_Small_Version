@@ -4,7 +4,7 @@ A lightweight and efficient Inventory Management System built with modern web te
 
 ## 🚀 Live Demo
 
-[Click here to view the project](https://haroon966.github.io/Inventory_Management_System_Small_Version/)
+[Click here to view / Use the project live ](https://haroon966.github.io/Inventory_Management_System_Small_Version/)
 
 ## 📌 Features
 
