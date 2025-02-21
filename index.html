@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/quagga@0.12.1/dist/quagga.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <!-- Font Awesome for Social Icons and Hamburger -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="light-theme">
+    <div class="app">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>Menu</h2>
+                <button class="hamburger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" onclick="showPage('dashboard')">Dashboard</a></li>
+                <li><a href="#" onclick="showPage('inventory')">Inventory</a></li>
+                <li><a href="#" onclick="showPage('transactions')">Transactions</a></li>
+                <li><a href="#" onclick="showPage('reports')">Reports</a></li>
+                <li><a href="#" onclick="showPage('settings')">Settings</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header>
+                <h1>Inventory Management</h1>
+                <div class="controls">
+                    <button id="theme-toggle">Toggle Theme</button>
+                    <div class="notification" id="notification-bell">🔔 <span id="notification-count">0</span></div>
+                </div>
+            </header>
+
+            <!-- Pages -->
+            <div id="dashboard" class="page active">
+                <h2>Dashboard</h2>
+                <p>Welcome to your dashboard!</p>
+                <canvas id="dashboard-chart"></canvas>
+            </div>
+
+            <div id="inventory" class="page">
+                <h2>Inventory</h2>
+                <div class="form-group">
+                    <input type="text" id="product-name" placeholder="Product Name">
+                    <input type="number" id="stock-level" placeholder="Stock Level">
+                    <input type="text" id="barcode" placeholder="Scan Barcode">
+                    <button onclick="addProduct()">Add Product</button>
+                    <button onclick="startBarcodeScanner()">Scan Barcode</button>
+                </div>
+                <div id="product-list"></div>
+                <h3>Low Stock Alerts</h3>
+                <div id="alert-list"></div>
+            </div>
+
+            <div id="transactions" class="page">
+                <h2>Transactions</h2>
+                <div class="form-group">
+                    <select id="transaction-product">
+                        <option value="">Select Product</option>
+                    </select>
+                    <input type="number" id="transaction-quantity" placeholder="Quantity">
+                    <select id="transaction-type">
+                        <option value="sale">Sale</option>
+                        <option value="purchase">Purchase</option>
+                    </select>
+                    <button onclick="addTransaction()">Add Transaction</button>
+                </div>
+                <div id="transaction-list"></div>
+            </div>
+
+            <div id="reports" class="page">
+                <h2>Reports</h2>
+                <canvas id="stock-chart"></canvas>
+                <div class="form-group">
+                    <button onclick="exportToExcel()">Export to Excel</button>
+                    <button onclick="exportToPDF()">Export to PDF</button>
+                </div>
+            </div>
+
+            <div id="settings" class="page">
+                <h2>Settings</h2>
+                <div class="form-group">
+                    <label>Low Stock Threshold: <input type="number" id="threshold" value="10"></label>
+                    <button onclick="saveSettings()">Save Settings</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Media Links -->
+        <div class="social-box">
+            <a href="https://github.com" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </div>
+
+    <!-- Video for Barcode Scanning -->
+    <video id="barcode-video" style="display: none;"></video>
+
+    <script src="script.js"></script>
+</body>
+</html>
